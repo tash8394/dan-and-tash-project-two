@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Library Dashboard</title>
+<style>
+* { box-sizing: border-box; font-family: Arial; }
+body { margin: 0; }
+
+
+.sidebar {
+  position: fixed;
+  width: 200px;
+  height: 100%;
+  background: #2c3e50;
+  color: white;
+}
+.sidebar ul { list-style: none; padding: 0; }
+.sidebar li { padding: 15px; }
+.sidebar li:first-child { background: #1abc9c; }
+.sidebar li:hover:not(.active) { background: #34495e; }
+.sidebar li::before { content: "📚 "; }
+
+
+.header {
+  margin-left: 200px;
+  background: #ecf0f1;
+  padding: 15px;
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+}
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+}
+.dropdown:hover .dropdown-menu { display: block; }
+
+
+.main {
+  margin-left: 200px;
+  padding: 20px;
+}
+.card {
+  width: 30%;
+  float: left;
+  margin: 1.5%;
+  padding: 15px;
+  border: 1px solid #ccc;
+}
+.card:hover { box-shadow: 0 0 10px gray; }
+.card::before { content: "● Available "; color: green; }
+.card:empty { background: #f9f9f9; }
+
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+form input, form select, form textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+input:focus { border: 2px solid blue; }
+input:valid { border: 2px solid green; }
+input:invalid { border: 2px solid red; }
+
+label.required::after { content: " *"; color: red; }
+
+table { width: 100%; border-collapse: collapse; }
+td, th { border: 1px solid #ccc; padding: 10px; }
+tr:nth-child(even) { background: #f2f2f2; }
+tr:first-child { background: #ddd; }
+
+
+.btn { padding: 10px; border: none; cursor: pointer; }
+.add { background: green; color: white; }
+.cancel { background: red; color: white; }
+.checkout { background: blue; color: white; }
+.btn:hover { opacity: 0.8; }
+.btn:active { transform: scale(0.95); }
+
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: none;
+}
+.modal:target { display: block; }
+.modal-content {
+  background: white;
+  width: 300px;
+  margin: 100px auto;
+  padding: 20px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+  <ul>
+    <li class="active">Dashboard</li>
+    <li>Books</li>
+    <li>Members</li>
+  </ul>
+</div>
+
+<div class="header">
+  <h2>Library Dashboard</h2>
+  <div class="dropdown">
+    Profile ▼
+    <div class="dropdown-menu">
+      <p>Logout</p>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- Cards -->
+  <div class="clearfix">
+    <div class="card">Book 1</div>
+    <div class="card">Book 2</div>
+    <div class="card">Book 3</div>
+    <div class="card">Book 4</div>
+    <div class="card">Book 5</div>
+    <div class="card"></div>
+  </div>
+
+  <!-- Form -->
+  <h3>Add New Book</h3>
+  <form>
+    <label class="required">Title</label>
+    <input type="text" required>
+
+    <label class="required">Category</label>
+    <select required>
+      <option value="">Select</option>
+      <option>Fiction</option>
+    </select>
+
+    <label>Description</label>
+    <textarea></textarea>
+
+    <button class="btn add">Add</button>
+    <button class="btn cancel" type="reset">Cancel</button>
+  </form>
+
+  <!-- Table -->
+  <h3>Recently Checked Out</h3>
+  <table>
+    <tr><th>Name</th><th>Book</th></tr>
+    <tr><td>John</td><td>Math</td></tr>
+    <tr><td>Jane</td><td>Physics</td></tr>
+  </table>
+
+  <br>
+  <a href="#modal" class="btn checkout">Check Out Book</a>
+
+</div>
+
+<!-- Modal -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <h3>Check Out Book</h3>
+    <form>
+      <input type="text" placeholder="User" required>
+      <input type="text" placeholder="Book" required>
+      <button class="btn checkout">Checkout</button>
+      <a href="#" class="btn cancel">Close</a>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>
